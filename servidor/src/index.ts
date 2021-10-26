@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import conectDB from '../config/db';
 
 
@@ -6,11 +7,13 @@ import conectDB from '../config/db';
 const app = express();
 conectDB();
 app.use(express.json({extended: true} as any));
+app.use(cors());
 
 const port = process.env.PORT || 4000;
 
 // import routes 
-app.use('/api/cliente', require('./routes/cliente'));
+app.use('/api/registro', require('./routes/cliente'));
+app.use('/api/registrados', require('./routes/registrados'));
 
 // defining routes
 app.get('/', (req, res) => {

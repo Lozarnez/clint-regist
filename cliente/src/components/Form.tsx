@@ -13,6 +13,7 @@ import {
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { Delete, Description, NoteAdd } from '@mui/icons-material';
+import clienteAxios from '../axiosConfig';
 
 function Form() {
 
@@ -27,6 +28,8 @@ function Form() {
     codigoPostal: '',
     telefono: '',
     rfc: '',
+    estatus: 'enviado',
+    documentos: [],
   });
   const [files, setFiles] = useState([]);
 
@@ -48,6 +51,19 @@ function Form() {
       [name]: value,
     }));
   };
+
+  const handleSubmit = async() => {
+
+    try {
+      const formData = form;
+      formData.documentos = files;
+      const registro = await clienteAxios.post('registro', {formData});
+      console.log(registro);
+    } catch (error) {
+      console.log(error);
+    }
+      
+  }
 
   const renderFileList = () => (
     <Grid item xs={12} md={10}>
@@ -205,7 +221,7 @@ function Form() {
           <Grid container spacing={2} justifyContent="center">
             <Grid item xs={12} textAlign="center">
               <Button
-                onClick={() => console.log(form)}
+                onClick={() => handleSubmit()}
               >
                 Enviar
               </Button>
@@ -221,7 +237,6 @@ function Form() {
 const useStyles = makeStyles({
   Container: {
     padding: '1rem',
-    backgroundColor: '#fafafa',
   },
   PaperContainer: {
     padding: '1rem',

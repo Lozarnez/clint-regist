@@ -39,13 +39,11 @@ const ClienteSchema = new Schema({
   telefono: {
     type: Number,
     required: true,
-    unique: true,
     trim: true,
   },
   rfc: {
     type: String,
     required: true,
-    unique: true,
     trim: true,
   },
   documentos: {
