@@ -8,10 +8,10 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={SubjectList} />
         <Route exact path="/formulario" component={Form} />
         <Route exact path="/lista-prospectos" component={SubjectList} />
-        <Route exact path="/evaluacion" component={Evaluation} />
+        <Route exact path="/evaluacion/:id" component={Evaluation} />
       </Switch>
     </Router>
   );
